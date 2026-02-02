@@ -1,5 +1,3 @@
-Here is a professional, high-quality README.md written in English for your GitHub repository. It organizes your commands into a logical flow that will look impressive to recruiters and the cybersecurity community.
-
 🛡️ Bug Bounty Recon & Vulnerability Research Toolkit
 This repository contains a comprehensive Reconnaissance & Vulnerability Assessment workflow. It is designed to streamline the process of mapping an attack surface and identifying common web vulnerabilities using industry-standard tools.
 
@@ -63,6 +61,26 @@ Katana: Modern spidering to find hidden endpoints.
 
 
 Gobuster/Dirb: Directory bursting to find hidden files and folders.
+
+🛠️ Toolset Summary
+Tool	Purpose
+Subfinder/Assetfinder	
+Subdomain Discovery 
+
+Httpx	
+Service Probing & Status Codes 
+
+Waybackurls/GAU	
+Historical URL Extraction 
+
+Nuclei	
+Template-based Vulnerability Scanning 
+
+Sqlmap	
+Automated SQL Injection Testing 
+
+Katana	
+Advanced Web Crawling/Spidering 
 
 📜 Professional Tips
 
