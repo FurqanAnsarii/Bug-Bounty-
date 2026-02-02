@@ -1,96 +1,122 @@
 🛡️ Bug Bounty Recon & Vulnerability Research Toolkit
-This repository contains a comprehensive Reconnaissance & Vulnerability Assessment workflow. It is designed to streamline the process of mapping an attack surface and identifying common web vulnerabilities using industry-standard tools.
 
-🚀 The Methodology Workflow
-The process is divided into five distinct phases:
+A professional-grade Reconnaissance & Vulnerability Assessment framework built for Bug Bounty Hunters and Security Researchers.
+This toolkit helps you systematically map the attack surface, discover hidden assets, and identify common & advanced web vulnerabilities using industry-standard tools.
 
-1. Subdomain Enumeration (Passive & Active)
-Discovering the target's footprint using multiple sources:
+💡 From subdomain enumeration to advanced fuzzing — everything follows a clean, real-world bug bounty workflow.
 
+🚀 Methodology Overview
 
-VirusTotal: Used for initial domain intelligence.
+The recon process is divided into 5 structured phases, designed to maximize coverage while minimizing noise.
 
+🔍 Phase 1: Subdomain Enumeration (Passive & Active)
 
-Subfinder: subfinder -d target.com -o subdomain.txt.
+Identify the full external footprint of the target using multiple intelligence sources.
 
+🧰 Tools Used
 
-Assetfinder: assetfinder -subs-only target.com.
+VirusTotal – Initial domain intelligence
 
-2. Live Host Discovery & Probing
-Filtering out dead domains to focus on active targets:
+Subfinder – Fast & passive subdomain discovery
 
+Assetfinder – Additional asset discovery
 
-Httpx: Identify live subdomains and status codes.
+📌 Commands
+subfinder -d target.com -o subdomains.txt
+assetfinder -subs-only target.com >> subdomains.txt
+sort -u subdomains.txt -o subdomains.txt
 
+🌐 Phase 2: Live Host Discovery & Probing
 
-Command: cat subdomains.txt | httpx -silent -o live_subdomains.txt.
+Filter out dead assets and focus only on reachable & responsive hosts.
 
-3. Endpoint & Parameter Mining
-Finding where the application accepts input:
+🧰 Tool Used
 
+Httpx – HTTP probing, status codes & tech detection
 
-Waybackurls/GAU: Extract historical URLs from web archives.
-
-
-ParamSpider: Automated parameter discovery for XSS/SQLi testing.
-
-
-Pattern Matching: Using grep to find sensitive paths like admin, login, config, or backup.
-
-4. Vulnerability Scanning (Automated)
-Executing targeted scans for specific bug classes:
+📌 Command
+cat subdomains.txt | httpx -silent -o live_subdomains.txt
 
 
-SQL Injection: sqlmap -m live_all_parameter.txt --random-agent --batch.
+✅ Optional precision:
 
+httpx -mc 200
 
-XSS: dalfox file urls.txt for Cross-Site Scripting.
+🧭 Phase 3: Endpoint & Parameter Mining
 
+Discover endpoints, parameters, and hidden inputs where vulnerabilities usually live.
 
-Nuclei: Template-based scanning for misconfigurations and CVEs.
+🧰 Tools Used
 
+Waybackurls / GAU – Historical URL extraction
 
-CORS/CSRF: Testing for cross-origin and request forgery issues using cors_scan.py and xsrfprobe.
+ParamSpider – Automated parameter discovery
 
+Grep – Pattern-based sensitive endpoint detection
 
-SSTI: Testing for Server-Side Template Injection with sstimap.
+🔎 Interesting Patterns
+admin | login | backup | config | test | old | dev
 
-5. Advanced Crawling & Fuzzing
+🧪 Phase 4: Vulnerability Scanning (Automated)
 
-Katana: Modern spidering to find hidden endpoints.
+Targeted scans for specific vulnerability classes to reduce false positives.
 
+🧰 Tools & Usage
+Vulnerability	Tool
+SQL Injection	sqlmap
+XSS	dalfox
+CVEs & Misconfigs	nuclei
+CORS	cors_scan.py
+CSRF	xsrfprobe
+SSTI	sstimap
+📌 Examples
+sqlmap -m params.txt --random-agent --batch
+dalfox file urls.txt
+nuclei -l live_subdomains.txt -t templates/
 
-Gobuster/Dirb: Directory bursting to find hidden files and folders.
+🧨 Phase 5: Advanced Crawling & Fuzzing
+
+Dig deeper to uncover hidden paths, APIs, and forgotten files.
+
+🧰 Tools Used
+
+Katana – Modern, JS-aware crawler
+
+Gobuster / Dirb – Directory & file brute-forcing
+
+katana -u https://target.com -o katana_urls.txt
+gobuster dir -u https://target.com -w wordlist.txt
 
 🛠️ Toolset Summary
 Tool	Purpose
-Subfinder/Assetfinder	
-Subdomain Discovery 
+Subfinder / Assetfinder	Subdomain Discovery
+Httpx	Live Host Probing
+Waybackurls / GAU	Historical URLs
+ParamSpider	Parameter Mining
+Nuclei	Template-based Scanning
+Sqlmap	SQL Injection
+Dalfox	XSS Detection
+Katana	Advanced Crawling
+📜 Pro Tips (Real Bug Bounty Mindset)
 
-Httpx	
-Service Probing & Status Codes 
+🧹 Clean Your Data
+Always remove duplicates:
 
-Waybackurls/GAU	
-Historical URL Extraction 
-
-Nuclei	
-Template-based Vulnerability Scanning 
-
-Sqlmap	
-Automated SQL Injection Testing 
-
-Katana	
-Advanced Web Crawling/Spidering 
-
-📜 Professional Tips
-
-Data Cleanup: Always remove duplicate URLs using sort -u to save time during scans.
+sort -u urls.txt -o urls.txt
 
 
-Precision: Use httpx -mc 200 to ensure you are only attacking active, accessible endpoints.
+🎯 Attack with Precision
+Focus only on valid endpoints:
+
+httpx -mc 200
 
 
-Efficiency: Pipe commands together (e.g., cat list | httpx) for a faster CLI workflow.
+⚡ Speed Matters
+Chain tools using pipes for faster recon:
 
-⚠️ Disclaimer
-This toolkit is for Educational Purposes and authorized Bug Bounty Programs only. Unauthorized scanning of targets is illegal.
+cat subdomains.txt | httpx | nuclei
+
+⚠️ Legal Disclaimer
+
+This toolkit is intended strictly for educational purposes and authorized Bug Bounty programs only.
+❌ Unauthorized scanning or testing of systems without permission is illegal and unethical.
