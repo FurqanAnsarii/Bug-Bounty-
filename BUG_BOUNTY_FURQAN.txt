@@ -1,0 +1,33 @@
+virustotal
+subdomain enumeration like subfinder,asset finder 
+subfider -d dmkdcmdk.com -o subdomain.txt
+assetfinder -subs-only googldkd.com
+cat subdomains.txt | httpx -silent -o live_subdomains.txt
+directroy busting dirb,gobuster 
+dirb http://fncjcnjdn.com
+gobuster dir -u http://gdoondle.com/ -w /usr/share/worldlist/...........
+paramspider -l list.txt
+paramspider -d beria.com 
+ cat output.txt | grep '?' | sort -u > params.txt
+echo "example.com" | waybackurls > wayback_urls.txt
+grep -i "login" wayback_urls.txt > login_urls.txt
+grep -i "admin" wayback_urls.txt > admin_urls.txt
+cros sacnner use ------ (python cors_scan.py -i /home/invisile/hackerone/firstDomain/results/live_all_parameter.txt -o oudcid.txt) 
+cat scan_results.txt | grep "CORS Header Found: *"
+dalfox url https://accounts.aerlingus.com
+dalfox file urls.txt
+sqlmap -m live_all_parameter.txt --random-agent --batch
+CSRF tool(XSRF PROBE used : xsrfprobe --url "http") login page,account setting,payment transfer,forms,profile modification delete etc,password/emial change,file upload forms,etc
+nuclei -tearget domain -o sdirbnkcnkd.txt
+nuclei -list hosts.txt -o jsdbcdj.txt
+nuclei -l discovered_urls.txt -t vulnerabilities/ -o vulnerabilities.txt
+./sstimap --load-urls params.txt -A -l 4 -f --log-response ./sstimap_output.txt
+waybackurl
+echo "example.com" | waybackurls > wayback_urls.txt
+ye dupliacte url ko remove karti ha sort -u urls.txt > unique_urls.txt
+cat unique_urls.txt | httpx -status-code -mc 200 > live_urls.txt
+cat wayback.txt gau.txt | grep -E "admin|debug|config|backup|log" | tee sensitive.txt
+katana -list urls.txt -o discovered_urls.txt -d 5 -c 10 -proxy http://127.0.0.1:8080
+cat found_urls.txt | httpx -silent -status-code -content-length -sc | grep "200" > active_urls.txt
+exam tips 
+
